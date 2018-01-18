@@ -24,11 +24,18 @@ RUN mv -f ~/selenium-server-standalone-$SELENIUM_STANDALONE_VERSION.jar /usr/loc
 RUN chown root:root /usr/local/bin/selenium-server-standalone.jar
 RUN chmod 0755 /usr/local/bin/selenium-server-standalone.jar
 
+# Set the locale
+RUN apt-get clean && apt-get update && apt-get install -y locales \
+  && sed -i -e 's/# cs_CZ.UTF-8 UTF-8/cs_CZ.UTF-8 UTF-8/' /etc/locale.gen && locale-gen
+
+ENV LANG cs_CZ.UTF-8 \
+    LANGUAGE en_US:en \
+    LC_ALL cs_CZ.UTF-8
+
 RUN apt-get autoremove -y
 
 RUN gem install bundler
 
 ENV GEM_PATH=/root/.gem
-
 
 CMD ["bash"]
