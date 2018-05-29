@@ -1,8 +1,8 @@
-FROM ruby:2.4.0
+FROM ruby:2.3.7
 
 # XVFB
-RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
-RUN apt-get install -y nodejs qt5-default libqt5webkit5-dev Xvfb
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs qt5-default libqt5webkit5-dev xvfb
 
 # Chromedriver whole setup (TODO: get CHROME_DRIVER_VERSION from chromedriver.storage.googleapis.com/LATEST_RELEASE)
 ENV CHROME_DRIVER_VERSION=2.33 \
